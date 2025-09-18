@@ -3,6 +3,8 @@ module gallery::access;
 use gallery::admin::GalleryData;
 use sui::coin::{Self, Coin};
 use sui::sui::SUI;
+use sui::transfer;
+use sui::tx_context::{Self, TxContext};
 
 public fun payAccess(gallery: &mut GalleryData, mut payment: Coin<SUI>, ctx: &mut TxContext){
     assert!(coin::value(&payment) >= gallery.get_fee(), 1);
